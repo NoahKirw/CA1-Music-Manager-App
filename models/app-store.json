@@ -1,8 +1,8 @@
 {
-  "playlistsStore": [
+  "albumStore": [
     {
       "id": 1,
-      "title": "My Gym Playlist",
+      "title": "For the Gym",
       "songs": [
         { "title": "Mulher de Verdade Gosta Mesmo E de, Pt.2", "artist": "DJ NEGRESKO", "duration": "2:59" },
         { "title": "REPULSIVE IN ITS SPLENDID BEAUTY", "artist": "Crowbar", "duration": "3:58" },
@@ -13,7 +13,7 @@
     },
     {
       "id": 2,
-      "title": "Just General Chill Music Playlist",
+      "title": "Just General Chill Music",
       "songs": [
         { "title": "Me And The Devil", "artist": "Gil Scott-Heron", "duration": "3:34" },
         { "title": "Glory Box", "artist": "Portishead", "duration": "5:09" },
@@ -23,7 +23,7 @@
     },
     {
       "id": 3,
-      "title": "Gnomepilled Playlist",
+      "title": "Gnome-Type-Music",
       "songs": [
         { "title": "Dancing Nihilist", "artist": "pathetic240px", "duration": "3:37" },
         { "title": "L'amour Toujours", "artist": "Gigi D'Agostino", "duration": "4:02" },

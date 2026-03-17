@@ -1,0 +1,12 @@
+<h2>{{album.title}}</h2>
+
+{{#each album.songs}}
+  <div class="song-item">
+    <strong>{{title}}</strong> - {{artist}}
+    <div>Duration: {{duration}}</div>
+  </div>
+{{/each}}
+
+<a href="/manager" class="ui button primary back-button">
+  Back to Manager
+</a>

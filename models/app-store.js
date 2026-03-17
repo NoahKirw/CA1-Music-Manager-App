@@ -5,32 +5,32 @@ import JsonStore from "./json-store.js";
 
 let nextId = 1;
 
-const playlistStore = {
+const musicManager = {
 
-  store: new JsonStore("./models/app-store.json", { playlistsStore: [] }),
-  stores: "playlistsStore",
+  store: new JsonStore("./models/app-store.json", { albumStore: [] }),
+  stores: "albumStore",
   array: "songs",
 
-  getAllPlaylists() {
+  getAllAlbums() {
     return this.store.findAll(this.stores);
   },
 
-  getPlaylist(id) {
-    return this.store.findOneBy(this.stores, (playlist) => playlist.id == id);
+  getAlbum(id) {
+    return this.store.findOneBy(this.stores, (Album) => Album.id === id);
   },
 
   getAppInfo() {
-    const allPlaylists = this.getAllPlaylists();
+    const allAlbums = this.getAllAlbums() || [];
     return {
       author: "Noah Kirwan",
       email: "noah@blahblahblah.com",
-      appName: "Playlist Manager",
+      appName: "Music Manager",
       version: "1.0.0",
-      playlists: allPlaylists.length,
-      songs: allPlaylists.reduce((total, p) => total + p.songs.length, 0)
+      Albums: allAlbums.length,
+      songs: allAlbums.reduce((total, p) => total + p.songs.length, 0)
     };
   } 
 
 };
 
-export default playlistStore;
+export default musicManager;

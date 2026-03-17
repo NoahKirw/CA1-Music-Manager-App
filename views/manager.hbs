@@ -1,0 +1,14 @@
+{{> menu id="manager"}}
+
+<section class="ui segment">
+  <h2>My Albums</h2>
+
+    {{#each albums}}
+    <div class="ui segment">
+        <h3>{{title}}</h3>
+        <p>Total Songs: {{songs.length}}</p>
+        <a href="/tracks/{{id}}" class="ui button">View tracks</a>
+    </div>
+    {{/each}} 
+
+</section>

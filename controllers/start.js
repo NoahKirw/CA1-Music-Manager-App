@@ -19,7 +19,7 @@ const start = {
     const viewData = {
 
       //Title
-      title: "Playlist App",
+      title: "Music App",
 
       //Get app info from the app store
       info: appStore.getAppInfo()
