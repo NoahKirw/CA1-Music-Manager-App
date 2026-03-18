@@ -2,7 +2,7 @@
 
 import logger from "../utils/logger.js";
 import JsonStore from "./json-store.js";
-import appInfo from "../utils/app-info.js";
+import appInfo from "./app-info.js";
 
 let nextId = 1;
 
