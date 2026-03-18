@@ -4,7 +4,7 @@
 import logger from "../utils/logger.js";
 
 //"                                              "
-import appStore from "../models/app-store.js";
+import appStore from "../models/manager-store.js";
 
 //Defines object 'collection' that contains controller methods for collection-related routes
 const collection = {

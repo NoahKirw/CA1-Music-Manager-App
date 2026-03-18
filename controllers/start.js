@@ -4,7 +4,7 @@
 import logger from "../utils/logger.js";
 
 //Imports for printing messages to the console/log
-import appStore from "../models/app-store.js";
+import appStore from "../models/manager-store.js";
 
 //Controller object for the home page
 const start = {

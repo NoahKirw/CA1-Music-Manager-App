@@ -1,7 +1,7 @@
 'use strict'; //Strict mode that...
 
 //Imports for printing messages to the console/log
-import appStore from "../models/app-store.js";
+import appStore from "../models/manager-store.js";
 
 //Controller object for handling tracks pages
 const tracks = {
@@ -14,11 +14,16 @@ const tracks = {
 
     //Data that will be passed to the tracks template
     const viewData = {
-      title: "tracks",                          
-      album: appStore.getAlbum(tracksId)  //Gets the tracks from the store using its ID
+      title: "tracks",
+      album: appStore.getAlbum(tracksId)  // Gets the album from the store using its Code
     };
 
-    //Renders the "tracks" template and send the data to it
+    if (!viewData.album) {
+      // If album is not found, redirect back to manager (prevents crash when invalid id is used)
+      return response.redirect("/manager");
+    }
+
+    // Renders the "tracks" template and send the data to it
     response.render("tracks", viewData);
   }
 };

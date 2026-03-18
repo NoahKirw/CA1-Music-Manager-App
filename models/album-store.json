@@ -1,0 +1,37 @@
+{
+  "albumStore": [
+    {
+      "code": 1,
+      "name": "For the Gym",
+      "tracks": [
+        { "name": "Mulher de Verdade Gosta Mesmo E de, Pt.2", "artist": "DJ NEGRESKO", "duration": "2:59" },
+        { "name": "REPULSIVE IN ITS SPLENDcode BEAUTY", "artist": "Crowbar", "duration": "3:58" },
+        { "name": "Existance Is Punishment", "artist": "Crowbar", "duration": "4:29" },
+        { "name": "Funeralopolis", "artist": "Electric Wizard", "duration": "8:43" },
+        { "name": "econ_yalu2008", "artist": "ilyhiryu", "duration": "1:31" }
+      ]
+    },
+    {
+      "code": 2,
+      "name": "Just General Chill Music",
+      "tracks": [
+        { "name": "Me And The Devil", "artist": "Gil Scott-Heron", "duration": "3:34" },
+        { "name": "Glory Box", "artist": "Portishead", "duration": "5:09" },
+        { "name": "Nine Years", "artist": "Ticklah", "duration": "3:31" },
+        { "name": "Would?", "artist": "Alice in Chains", "duration": "3:27" }
+      ]
+    },
+    {
+      "code": 3,
+      "name": "Gnome-Type-Music",
+      "tracks": [
+        { "name": "Dancing Nihilist", "artist": "pathetic240px", "duration": "3:37" },
+        { "name": "L'amour Toujours", "artist": "Gigi D'Agostino", "duration": "4:02" },
+        { "name": "This Feeling - Sped Up", "artist": "my!lane", "duration": "2:28" },
+        { "name": "In Via", "artist": "Vril", "duration": "6:22" },
+        { "name": "Beachwalk", "artist": "Whitewoods", "duration": "2:08" },
+        { "name": "Keep Your Eyes Peeled", "artist": "ULTRA SUNN", "duration": "3:51" }
+      ]
+    }
+  ]
+}

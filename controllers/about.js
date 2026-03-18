@@ -1,7 +1,7 @@
 'use strict'; //Catchs common JavaScript mistakes
 
 //Imports for printing messages to the console/log
-import appStore from "../models/app-store.js";
+import appStore from "../models/manager-store.js";
 
 //Defines the 'about' controller object with methods for handling about page routes
 const about = {

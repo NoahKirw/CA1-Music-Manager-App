@@ -1,7 +1,7 @@
-'use strict'; //Ccatchs common JavaScript mistakes
+'use strict'; //Catches common JavaScript mistakes
 
 //Imports for printing messages to the console/log
-import playlistStore from "../models/app-store.js";
+import appStore from "../models/manager-store.js";
 
 //Controller object for handling the manager page
 const manager = {
@@ -11,8 +11,8 @@ const manager = {
 
     //Data that will be sent to the manager template
     const viewData = {
-      title: "Playlist manager",                
-      albums: playlistStore.getAllAlbums()        //Get all playlists from the app store
+      title: "album manager",
+      albums: appStore.getAllAlbums() // Get all albums from the app store
     };
 
     //Renders the manager Handlebars template and pass the data to it

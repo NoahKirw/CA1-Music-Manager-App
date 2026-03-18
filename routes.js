@@ -14,6 +14,7 @@ router.get("/", start.createView);
 router.get("/manager", manager.createView);
 router.get("/collection/:id", collection.createView);
 router.get("/about", about.createView);
+
 router.get("/tracks/:id", tracks.createView);
 
 export default router;
