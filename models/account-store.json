@@ -27,6 +27,13 @@
       "email": "john@gmail.com",
       "password": "john",
       "id": "d24f83a1-bf9d-46fd-b1f1-2ffd4f951311"
+    },
+    {
+      "firstName": "asdf",
+      "lastName": "sadf",
+      "email": "asdf",
+      "password": "asdf",
+      "id": "270e19e8-e8dd-48b1-aea2-0aab3eb4ec22"
     }
   ]
 }

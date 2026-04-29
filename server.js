@@ -12,10 +12,10 @@ const app = express();
 const port = 3000;
 
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
+  destination: (request, file, cb) => {
     cb(null, 'public/images/');
   },
-  filename: (req, file, cb) => {
+  filename: (request, file, cb) => {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
     cb(null, uniqueSuffix + '-' + file.originalname);
   }
