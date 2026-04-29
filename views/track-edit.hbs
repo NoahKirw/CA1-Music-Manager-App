@@ -1,0 +1,21 @@
+<h2>Edit Track for {{album.title}}</h2>
+
+<form class="ui stacked segment form" action="/album/{{album.id}}/updatetrack/{{track.id}}" method="POST">
+  <div class="three fields">
+    <div class="field">
+      <label>Title</label>
+      <input type="text" name="name" value="{{track.name}}" required placeholder="Title">
+    </div>
+    <div class="field">
+      <label>Artist</label>
+      <input type="text" name="artist" value="{{track.artist}}" required placeholder="Artist">
+    </div>
+    <div class="field">
+      <label>Duration</label>
+      <input type="text" name="duration" value="{{track.duration}}" placeholder="Duration (e.g. 3:45)">
+    </div>
+  </div>
+  <button class="ui blue submit button">Save Changes</button>
+</form>
+
+<a href="/album/{{album.id}}" class="ui button">Back to Album</a>

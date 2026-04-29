@@ -1,30 +1,102 @@
 'use strict'; //Strict mode that...
 
 //Imports for printing messages to the console/log
-import appStore from "../models/manager-store.js";
+import logger from '../utils/logger.js';
+import appStore from '../models/album-store.js';
+import { v4 as uuidv4 } from 'uuid';
+import accounts from './accounts.js';
 
 //Controller object for handling tracks pages
 const tracks = {
-
-  //Function that creates and renders a tracks view
   createView(request, response) {
+    const tracksId = request.params.id;
+    const loggedInUser = accounts.getCurrentaccount(request);
+    
+    if (loggedInUser) {
+      logger.debug('tracks id = ' + tracksId);
+      const album = appStore.getalbum(tracksId);
+      const viewData = {
+        title: 'tracks',
+        album,
+        fullname: loggedInUser.firstName + ' ' + loggedInUser.lastName,
+      };
 
-    //Gets the tracks ID from the URL parameters
-    const tracksId = parseInt(request.params.id);
-
-    //Data that will be passed to the tracks template
-    const viewData = {
-      title: "tracks",
-      album: appStore.getAlbum(tracksId)  // Gets the album from the store using its Code
-    };
-
-    if (!viewData.album) {
-      // If album is not found, redirect back to manager (prevents crash when invalid id is used)
-      return response.redirect("/manager");
+      response.render('tracks', viewData);
+    } else {
+      response.redirect('/');
     }
+  },
 
-    // Renders the "tracks" template and send the data to it
-    response.render("tracks", viewData);
+  editView(request, response) {
+    const albumId = request.params.id;
+    const trackId = request.params.trackid;
+    const loggedInUser = accounts.getCurrentaccount(request);
+
+    if (loggedInUser) {
+      const album = appStore.getalbum(albumId);
+      const track = album && album.tracks ? album.tracks.find((t) => t.id === trackId) : null;
+      if (!album || !track) {
+        return response.redirect('/album/' + albumId);
+      }
+
+      const viewData = {
+        title: 'Edit track',
+        album,
+        track,
+        fullname: loggedInUser.firstName + ' ' + loggedInUser.lastName,
+      };
+
+      response.render('track-edit', viewData);
+    } else {
+      response.redirect('/');
+    }
+  },
+
+  async updateTrack(request, response) {
+    const loggedInUser = accounts.getCurrentaccount(request);
+    if (loggedInUser) {
+      const albumId = request.params.id;
+      const trackId = request.params.trackid;
+      const updatedTrack = {
+        id: trackId,
+        name: request.body.name,
+        artist: request.body.artist,
+        duration: request.body.duration,
+      };
+      await appStore.updatetrack(albumId, trackId, updatedTrack);
+      response.redirect('/album/' + albumId);
+    } else {
+      response.redirect('/');
+    }
+  },
+
+  //Function to delete a song from an album
+  deleteSong(request, response) {
+    const loggedInUser = accounts.getCurrentaccount(request);
+    if (loggedInUser) {
+      const albumId = request.params.id;
+      const trackId = request.params.trackid;
+      appStore.removetrack(albumId, trackId);
+      response.redirect('/album/' + albumId);
+    } else {
+      response.redirect('/');
+    }
+  },
+
+  //Function to add a song to an album
+  async addSong(request, response) {
+    const loggedInUser = accounts.getCurrentaccount(request);
+    if (loggedInUser) {
+      const albumId = request.params.id;
+      const track = {
+        id: uuidv4(),
+        ...request.body
+      };
+      await appStore.addtrack(albumId, track);
+      response.redirect('/album/' + albumId);
+    } else {
+      response.redirect('/');
+    }
   }
 };
 

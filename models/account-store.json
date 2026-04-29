@@ -1,0 +1,32 @@
+{
+  "accounts": [
+    {
+      "firstName": "asdf",
+      "lastName": "fdsa",
+      "email": "asdfasdf",
+      "password": "asdf",
+      "id": "d341a1d1-32c8-4e30-b5f4-f61b632ecc86"
+    },
+    {
+      "firstName": "asdf",
+      "lastName": "fdsa",
+      "email": "asdfasdf",
+      "password": "asdf",
+      "id": "f4646303-d043-48ee-8be6-d3e15259a144"
+    },
+    {
+      "firstName": "asdf",
+      "lastName": "sdfa",
+      "email": "asdf",
+      "password": "asdf",
+      "id": "2860c13b-619f-4de2-9eef-0ebc934cde0f"
+    },
+    {
+      "firstName": "John",
+      "lastName": "cena",
+      "email": "john@gmail.com",
+      "password": "john",
+      "id": "d24f83a1-bf9d-46fd-b1f1-2ffd4f951311"
+    }
+  ]
+}

@@ -9,7 +9,80 @@
     Welcome to the Music Manager App. This is a simple application where you can create and manage your tracks. Use the manager to view your tracks. There are some songs already added to the app, so feel free to explore and create your own playlists!
   </p>
 
-  <img src="/app.png" alt="FL Studio" class="app-image">
-  <img src="/FL.png" alt="FL Studio" class="fl-image">
+  {{#with stats}}
+  <div class="ui center aligned grid stats-panel">
+    <div class="ui sixteen wide column">
+      <div class="ui centered four statistics">
+        <div class="ui statistic">
+          <div class="value">
+            <i class="microphone icon"></i>
+          </div>
+          <div class="label">
+            {{displayNumAlbums}} albums
+          </div>
+        </div>
+
+        <div class="ui red statistic">
+          <div class="value">
+            <i class="music icon"></i>
+          </div>
+          <div class="label">
+            {{displayNumTracks}} tracks
+          </div>
+        </div>
+
+        <div class="ui purple statistic">
+          <div class="value">
+            <i class="accounts icon"></i>
+          </div>
+          <div class="label">
+            {{displayNumAccounts}} accounts
+          </div>
+        </div>
+
+        <div class="ui blue statistic">
+          <div class="value">
+            <i class="balance scale icon"></i>
+          </div>
+          <div class="label">
+            Average tracks per album: {{displayAverage}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ui sixteen wide column">
+      <div class="ui centered two statistics">
+        <div class="ui yellow statistic">
+          <div class="value">
+            <i class="star icon"></i>
+          </div>
+          <div class="label">
+            Highest Rated albums: {{highest}} stars
+            <table>
+              {{#each displayFav}}
+              <tr>
+                <td>{{this}}</td>
+              </tr>
+              {{/each}}
+            </table>
+          </div>
+        </div>
+
+        <div class="ui green statistic">
+          <div class="value">
+            <i class="dot circle outline icon"></i>
+          </div>
+          <div class="label">
+            Average Rating: {{displayAvgRating}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{/with}}
+
+  <img src="./app.png" alt="App Image" class="app-image">
+  <img src="./FL.png" alt="FL Studio" class="fl-image">
 
 </section>

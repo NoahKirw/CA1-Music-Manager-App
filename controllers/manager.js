@@ -1,24 +1,98 @@
-'use strict'; //Catches common JavaScript mistakes
+'use strict';
 
-//Imports for printing messages to the console/log
-import appStore from "../models/manager-store.js";
+import logger from "../utils/logger.js";
+import albumStore from "../models/album-store.js";
+import { v4 as uuidv4 } from 'uuid';
+import accounts from './accounts.js';
 
-//Controller object for handling the manager page
+
+
 const manager = {
+    createView(request, response) {
+    logger.info("manager page loading!");
 
-  //Function that creates and renders the manager view
-  createView(request, response) {
+    const loggedInAccount = accounts.getCurrentaccount(request);
 
-    //Data that will be sent to the manager template
-    const viewData = {
-      title: "album manager",
-      albums: appStore.getAllAlbums() // Get all albums from the app store
-    };
+    if (loggedInAccount) {
+      const searchTerm = request.query.searchTerm || "";
 
-    //Renders the manager Handlebars template and pass the data to it
-    response.render("manager", viewData);
-  }
+      const albums = searchTerm
+        ? albumStore.searchUseralbums(searchTerm, loggedInAccount.id)
+        : albumStore.getUseralbums(loggedInAccount.id);
+
+      const sortField = request.query.sort;
+      const order = request.query.order === "desc" ? -1 : 1;
+
+      let sorted = albums;
+
+      if (sortField) {
+        sorted = albums.slice().sort((a, b) => {
+          if (sortField === "title") {
+            return a.title.localeCompare(b.title) * order;
+          }
+
+          if (sortField === "rating") {
+            return (a.rating - b.rating) * order;
+          }
+
+          return 0;
+        });
+      }
+
+      const viewData = {
+        title: "album App manager",
+        fullname: loggedInAccount.firstName + ' ' + loggedInAccount.lastName,
+        albums: sortField ? sorted : albums,
+        search: searchTerm,
+        titleSelected: request.query.sort === "title",
+        ratingSelected: request.query.sort === "rating",
+        ascSelected: request.query.order === "asc",
+        descSelected: request.query.order === "desc",
+      };
+      
+      logger.info('about to render' + viewData.albums);
+      
+      response.render('manager', viewData);
+    }
+    else response.redirect('/');
+
+  },
+
+
+  async addalbum(request, response) {
+    const loggedInAccount = accounts.getCurrentaccount(request);
+    if (loggedInAccount) {
+      const timestamp = new Date();
+      
+      const newalbum = {
+        userid: loggedInAccount.id,
+        id: uuidv4(),
+        title: request.body.title,
+        date: timestamp,
+        tracks: [],
+        image: request.file ? '/images/' + request.file.filename : null
+      };
+      await albumStore.addalbum(newalbum);
+      response.redirect('/manager');
+    } else {
+      response.redirect('/');
+    }
+  },
+
+
+  deletealbum(request, response) {
+    const loggedInAccount = accounts.getCurrentaccount(request);
+    if (loggedInAccount) {
+      const albumId = request.params.id;
+      logger.debug(`Deleting album ${albumId}`);
+      albumStore.removealbum(albumId);
+      response.redirect("/manager");
+    } else {
+      response.redirect('/');
+    }
+  },
+
+
 };
 
-//Export the manager controller so it can be used in the router
 export default manager;

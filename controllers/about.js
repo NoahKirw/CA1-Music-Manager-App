@@ -1,24 +1,24 @@
-'use strict'; //Catchs common JavaScript mistakes
+'use strict';
+import logger from '../utils/logger.js';
+import appStore from '../models/album-store.js';
+import appInfo from '../models/app-info.js';
+import accounts from './accounts.js';
 
-//Imports for printing messages to the console/log
-import appStore from "../models/manager-store.js";
-
-//Defines the 'about' controller object with methods for handling about page routes
 const about = {
-  
-  //Method to create and render the "About" page
   createView(request, response) {
+    const loggedInUser = accounts.getCurrentaccount(request);
+    logger.info('About page loading!');
     
-    //Prepares the data to send to the view template
-    const viewData = {
-      title: "About", // Page title
-      info: appStore.getAppInfo() // Retrieve application info (e.g., description, version, author) from appStore
-    };
-
-    //Renders the 'about' view template (about.ejs or similar) and pass the viewData object
-    response.render("about", viewData);
-  }
+    if (loggedInUser) {
+      const viewData = {
+        title: 'About the Album App',
+        fullname: loggedInUser.firstName + ' ' + loggedInUser.lastName,
+        info: appInfo.getAppInfo(appStore.getAllalbums()),
+      };
+      response.render('about', viewData);
+    }
+    else response.redirect('/');
+  },
 };
 
-// Exports the 'about' controller so it can be used in routing modules
 export default about;

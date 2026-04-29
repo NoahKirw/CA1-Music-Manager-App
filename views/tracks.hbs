@@ -1,11 +1,15 @@
-<h2>{{album.name}}</h2>
+<h2>{{album.title}}</h2>
 
 {{#each album.tracks}}
   <div class="song-item">
     <strong>{{name}}</strong> - {{artist}}
     <div>Duration: {{duration}}</div>
+    <a href="/album/{{../album.id}}/edittrack/{{id}}" class="ui button small orange">Edit</a>
+    <a href="/album/{{../album.id}}/deletesong/{{id}}" class="ui button small red">Delete</a>
   </div>
 {{/each}}
+
+{{> addtrack id=album.id}}
 
 <a href="/manager" class="ui button primary back-button">
   Back to Manager
