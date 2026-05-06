@@ -36,7 +36,7 @@
 
         <div class="ui purple statistic">
           <div class="value">
-            <i class="accounts icon"></i>
+            <i class="users icon"></i>
           </div>
           <div class="label">
             {{displayNumAccounts}} accounts
@@ -52,37 +52,6 @@
             Average tracks per <br> album: {{displayAverage}}
           </div>
         </div>
-      </div>
-    </div>
-
-    <div class="ui sixteen wide column">
-      <div class="ui centered two statistics">
-
-        <div class="ui yellow statistic">
-          <div class="value">
-            <i class="star icon"></i>
-          </div>
-          <div class="label">
-            Highest Rated albums: {{highest}} stars
-            <table>
-              {{#each displayFav}}
-              <tr>
-                <td>{{this}}</td>
-              </tr>
-              {{/each}}
-            </table>
-          </div>
-        </div>
-
-        <div class="ui green statistic">
-          <div class="value">
-            <i class="dot circle outline icon"></i>
-          </div>
-          <div class="label">
-            Average Rating: {{displayAvgRating}}
-          </div>
-        </div>
-		
       </div>
     </div>
     
